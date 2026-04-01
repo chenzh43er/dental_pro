@@ -5,15 +5,10 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1.0">
 
   <title>Find Free and Low Cost Dental Clinics - USLowCostDental</title>
-  <meta name="description" content="Choose your state to get details about dental clinics that offer affordable or free services. USLowCostDental is the perfect option to take care of your dental wellness.">  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+  <meta name="description" content="Choose your state to get details about dental clinics that offer affordable or free services. USLowCostDental is the perfect option to take care of your dental wellness.">
+
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
-
-  <link rel="preload" as="font" type="font/woff2" href="/Public/Fonts/googleSans-Bold.woff2">
-  <link rel="preload" as="font" type="font/woff2" href="/Public/Fonts/googleSans-Regular.woff2">
 
 <body style="padding: 0px 0px;">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -550,260 +545,42 @@
   </aside>
 </main>
 
-<footer>
-  <div class="wrapper">
-    <div class="ft-top">
-      <a href="/" class="ft-logo">
-        <img src="/Public/Images/Dental-logo-W.png" alt="logo">
-      </a>
-      <ul class="footer-ul">
-        <li>
-          <a href="/support/about-us/">About Us</a>
-        </li><li>
-        <a href="/support/disclaimer/">Disclaimer</a>
-      </li><li>
-        <a href="/support/dmca/">DMCA</a>
-      </li><li>
-        <a href="/support/privacy-policy/">Privacy Policy</a>
-      </li>            </ul>
-    </div>
-    <div class="ft-bottom">
-      We provide detailed information on dental clinics offering free or
-      low-cost services for individuals who cannot afford expensive dental
-      treatments.
-      <br><br>© <span id="year">2026</span> Uslowcost Dental. All Rights
-      Reserved.
-    </div>
-  </div>
+<footer id = "footer">
+
 </footer>
 
 <script src="./js/jquery-3.0.0.min.js"></script>
-
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // 加载 header
+  fetch('./header.html')
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById('header').innerHTML = data;
 
-  var loginStatus = false;
-  $(".google-img-wrap").click(function () {
-    event.stopPropagation();
-    if (localStorage.userInfo !== undefined) {
-      $(".sign-out-btn").css("display", "block");
-    } else if (!loginStatus) {
-      //  login
-      $("#login").css("display", "block");
-      googleLogin();
-    } else {
-      return;
-    }
-  });
+            $(".icon-nav").click(function() {
+              $(".nav-cover").toggleClass('expand');
+              $(".header-nav").toggleClass('expand');
+            })
+            $(".nav-cover").click(function() {
+              $(".nav-cover").toggleClass('expand');
+              $(".header-nav").toggleClass('expand');
+            })
 
-  $(".sign-out-btn").click(function () {
-    $(".sign-out-btn").css("display", "none");
-    // $(".sign-out-btn-mobile").css('display','none')
-    googleSignOut();
-  });
-  $(".signlater").click(function () {
-    $("#login").hide();
-  });
-  $(".icon-close").click(function () {
-    $("#login").hide();
-  });
-  $("body").click(function () {
-    event.stopPropagation();
-    $(".sign-out-btn").css("display", "none");
-  });
-  function googleSignOut() {
-    if ($(".google-img").hasClass("index-google-img")) {
-      $(".google-img img").attr(
-              "src",
-              "/Public/Images/dental/sign-in.svg"
-      );
-    } else {
-      $(".google-img img").attr(
-              "src",
-              "/Public/Images/dental/sign-in2.svg"
-      );
-    }
-    $(".google-name").text("Sign In");
-    $("#loginButton").empty();
-    $("#login").css("display", "none");
-    loginStatus = false;
-    google.accounts.id.initialize({
-      client_id:
-              "57372543297-qv1gpl96qu3ar28m0s6sc906mhc4m48u.apps.googleusercontent.com",
-    });
-    google.accounts.id.revoke(
-            JSON.parse(localStorage.userInfo).email,
-            (done) => {
-              google.accounts.id.disableAutoSelect();
-            }
-    );
-    localStorage.removeItem("userInfo");
-    localStorage.removeItem("clinicMark");
-    $(".remove").removeClass("remove");
-  }
-  function googleLogin() {
-    loginStatus = true;
-    google.accounts.id.initialize({
-      client_id:
-              "57372543297-qv1gpl96qu3ar28m0s6sc906mhc4m48u.apps.googleusercontent.com",
-      callback: handleCredentialResponse,
-    });
-    google.accounts.id.prompt((notification) => {
-      // console.log(notification.isNotDisplayed())
-      if (
-              notification.isNotDisplayed() ||
-              notification.isSkippedMoment()
-      ) {
-        loginStatus = false;
-        google.accounts.id.renderButton(
-                document.getElementById("loginButton"),
-                { theme: "filled_blue", size: "large", shape: "circle" } // customization attributes
-        );
-      }
-    });
-  }
+            $(".nav-item.expand .nav-con").on('click', function(e) {
+              if ($(e.target).closest('.icon-go').length) {
+                e.preventDefault();
+                $(this).parent().find(".nav-sub-list").toggleClass("expand");
+              }
+            });
+          });
 
-  function handleCredentialResponse(response) {
-    $.ajax({
-      url: "/support/user_upload/",
-      data: {
-        google_token: response.credential,
-      },
-      type: "POST",
-      dataType: "json",
-      success: function (res) {
-        if (res.code == 200) {
-          console.log(res);
-          loginStatus = false;
-          localStorage.userInfo = JSON.stringify(res.data);
-          $(".google-img img").attr("src", res.data.image);
-          $(".google-name").text(res.data.nickname);
-          // $(".sign-out-btn").css('display','block')
-          $("#login").css("display", "none");
-          if (document.documentElement.clientWidth <= 900) {
-            $(".sign-out-btn").css("display", "block");
-          }
-        }
-      },
-    });
-  }
-  $(".shortListButton").click(function (event) {
-    event.stopPropagation();
-    $(".wishBar").addClass("expanded");
-    $(".wishBarCover").css("width", "100%");
-  });
-  $("body").click(function () {
-    // event.stopPropagation()
-    $(".wishBar").removeClass("expanded");
-    $(".wishBarCover").css("width", "0");
-  });
-  jQuery(document).ready(function () {
-    var Mark = "";
-    // $("#total").text($('.show').length);
-    if (localStorage.clinicMark) {
-      Mark = localStorage.getItem("clinicMark");
-      var clinicMark = localStorage.getItem("clinicMark");
-      arr = clinicMark.substring(0, clinicMark.length - 1).split("/");
-      $(".total").text(arr.length);
-      if (arr.length > 1) {
-        $(".plural").show();
-      }
-      $(arr).each(function (i, item) {
-        var href1 = localStorage.getItem(arr[i]);
-        // console.log(localStorage.getItem(arr[i]));
-        str1 = '<tr class="show">';
-        str1 += '<td><a href="' + href1 + '">' + arr[i] + "</a></td>";
-        str1 +=
-                '<td><img src="/Public/Images/delet.png" class="delet" alt="delet"></td>';
-        str1 += "</tr>";
-        $(".favourites_added tbody").append(str1);
-
-        var arrin = arr[i];
-        $(".statetitle").each(function (i, item) {
-          // console.log(i)
-          if ($(this).text() == arrin) {
-            // console.log($(this).text())
-            $(this)
-                    .siblings(".imgli-box")
-                    .find(".like")
-                    .addClass("remove");
-          }
-        });
-        $("#office-tl").each(function (i, item) {
-          if ($(this).text() == arrin) {
-            $(".like").addClass("remove");
-          }
-        });
-      });
-    }
-    $("body").on("click", ".delet", function (event) {
-      event.stopPropagation();
-      $(this).parent().parent().remove();
-      var deletext = $(this).parent().siblings().children().text();
-      localStorage.removeItem(deletext);
-      refresh();
-      $(".statetitle").each(function (i, item) {
-        // console.log(i)
-        if ($(this).text() == deletext) {
-          console.log($(this).text());
-          $(this)
-                  .siblings(".imgli-box")
-                  .find(".like")
-                  .removeClass("remove");
-        }
-      });
-      $("#office-tl").each(function (i, item) {
-        if ($(this).text() == deletext) {
-          $(".like").removeClass("remove");
-        }
-      });
-      var numItems = $(".show").length;
-      $(".total").text(numItems);
-      if (numItems > 1) {
-        $(".plural").show();
-      } else {
-        $(".plural").hide();
-      }
-      $(".wishBarCover").addClass("expanded");
-      return false;
-    });
-
-    function refresh() {
-      var Markf = "";
-      $(".show td:first-child").each(function (i, item) {
-        Markf += $(this).text() + "/";
-      });
-      // Mark += txts +'/';
-      localStorage.setItem("clinicMark", Markf);
-    }
-  });
-
-  const images = document.querySelectorAll('img[lazyload]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.webpsrc ? img.dataset.webpsrc : img.dataset.src;
-        observer.unobserve(img);
-      }
-    });
-  });
-
-  images.forEach(img => observer.observe(img));
-
-  $(".copyrights").text(
-          "USLowCosDental Copyright © " + new Date().getFullYear()
-  );
-
-  $(".icon-nav-btn").click(function () {
-    $(".nav-modal").toggle();
-    $("#hd-menu-input").prop("checked", false);
-  });
-  $(".nav-cover").click(function () {
-    $(".nav-modal").hide();
-  });
+  // 加载 footer
+  fetch('./footer.html')
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById('footer').innerHTML = data;
+          });
 </script>
-
 
 </body>
 </html>
