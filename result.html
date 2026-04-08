@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
+
+    <title>M-Power Health Center - USLowCostDental</title>
+    <link rel="preload" as="style" href="./css/style.css?v=1.5">
+    <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="./js/utlParam.js"></script>
+    <style>
+        .success-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        .success-content {
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 48px;
+            color: #52c41a;
+            margin-bottom: 16px;
+        }
+        .success-text {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 24px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 8px 24px;
+            background: #1890ff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .back-btn:hover {
+            background: #40a9ff;
+        }
+
+        .share-title {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .social-share {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Platform-specific colors */
+        .facebook   { background-color: #3b5998; }
+        .instagram  { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .twitter    { background-color: #1da1f2; }
+        .youtube    { background-color: #ff0000; }
+        .whatsapp   { background-color: #25d366; }
+        .pinterest  { background-color: #bd081c; }
+        .snapchat   { background-color: #fffc00; color: black; }
+        .messenger  { background-color: #0084ff; }
+
+        .shareUl{
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .social-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .shareUl{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 10px;
+                column-gap: 30px;
+            }
+            .underListDiv{
+                padding: 0px;
+            }
+        }
+
+        .suggestHouseUl {
+            display: grid;
+            grid-gap: 20px;
+        }
+
+        @media screen and (min-width: 500px) {
+            .suggestHouseUl {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        .RightBottom_adbox {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            position: sticky;
+            top: 70px;
+            height: 300px !important;
+        }
+    </style>
+</head>
+
+<body style="padding: 0px 0px ">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <defs>
+        <symbol id="right-arrow" viewBox="0 0 492 409.33">
+            <path d="M484.14,185.54,306.46,7.86a27,27,0,0,0-38.08,0L252.24,24a26.79,26.79,0,0,0-7.86,19,27.3,27.3,0,0,0,7.86,19.27L355.9,166.18H26.58A26.26,26.26,0,0,0,0,192.11v23.36c0,14.85,11.73,27.65,26.58,27.65h330.5L252.25,347.58a26.66,26.66,0,0,0-.1,37.7h0l.09.1,16.13,16.09a27,27,0,0,0,38.08,0L484.14,223.76A27.16,27.16,0,0,0,484.14,185.54Z"></path>
+        </symbol>
+        <symbol id="search" viewBox="0 0 427.69 427.83">
+            <g>
+                <path id="circle2017" d="M233.38,41.2c-105.79,0-192,86.17-192,192s86.17,192.13,192,192.13A190.78,190.78,0,0,0,353,383.16l80,79.92a21.38,21.38,0,0,0,30.25-30.21l-80-80a191.16,191.16,0,0,0,42.17-119.75c0-105.79-86.21-192-192-192Zm0,42.67A149.38,149.38,0,1,1,84.08,233.16,148.94,148.94,0,0,1,233.38,83.87Z" transform="translate(-41.42 -41.2)"></path>
+            </g>
+        </symbol>
+        <symbol id="star" viewBox="0 0 165.42 157.97">
+            <path d="M160.07,55.63l-49.59-7.21L88.32,3.48a6.26,6.26,0,0,0-11.22,0L54.94,48.42,5.35,55.63a6.19,6.19,0,0,0-3.58,1.81,6.27,6.27,0,0,0,.12,8.85l35.88,35-8.48,49.39a6.25,6.25,0,0,0,9.06,6.59l44.36-23.32,44.36,23.32a6.18,6.18,0,0,0,4,.62,6.24,6.24,0,0,0,5.1-7.21l-8.48-49.39,35.88-35a6.25,6.25,0,0,0-3.46-10.66Z"></path>
+        </symbol>
+        <symbol id="phone" viewBox="0 0 384 384">
+            <path d="M362.67,266.67a242.93,242.93,0,0,1-76.16-12.16,21.42,21.42,0,0,0-21.66,5.22l-46.93,47A321.25,321.25,0,0,1,77.33,166.29l46.94-47.14a21.42,21.42,0,0,0,5.22-21.66,242.93,242.93,0,0,1-12.16-76.16A21.25,21.25,0,0,0,96,0H21.33A21.32,21.32,0,0,0,0,21.33C0,221.65,162.35,384,362.67,384A21.25,21.25,0,0,0,384,362.67V288A21.25,21.25,0,0,0,362.67,266.67Z"></path>
+        </symbol>
+        <symbol id="location" viewBox="0 0 384 512">
+            <path d="M192,0C86.14,0,0,86.74,0,193.39,0,344.92,174,501.38,181.35,508a16.06,16.06,0,0,0,21.3,0c7.4-6.59,181.35-163,181.35-314.58C384,86.74,297.86,0,192,0Zm0,298.67A106.67,106.67,0,1,1,298.67,192,106.79,106.79,0,0,1,192,298.67Z"></path>
+        </symbol>
+        <symbol id="map" viewBox="0 0 458.67 458.67">
+            <path d="M229.33,0C102.68,0,0,102.68,0,229.33S102.68,458.67,229.33,458.67,458.67,356,458.67,229.33,355.93.14,229.33,0ZM32,229.33a195.73,195.73,0,0,1,11.18-64.85c13.23,96.21,97.62,104.34,101.25,119.68a300.73,300.73,0,0,1,1.49,52c1.49,29.66,42.45,30.08,58.24,53.55a63.34,63.34,0,0,1,6.21,35.95A197.57,197.57,0,0,1,32,229.33ZM282.88,419.2C297.41,373.7,341,358.27,345.47,332c3.56-21.1-24.17-32-49.06-35s-21.08-28.69-38.64-46.93-29-17.24-53.65-14.14-45.76,1.06-52.65-14.11,1.9-22.42-16.24-41.21a18.57,18.57,0,0,1,9.18-31.6c12.8-3.09,35.56,19.2,48.89,16.58,40.15-8.28-8-86.91,52.35-106.67a44.36,44.36,0,0,0,25.41-22.27,196.85,196.85,0,0,1,90.71,46.93,102.93,102.93,0,0,1,7.7,54.4c-8,24.9-28.31,42.82-6.21,83.55,23.07,42.53,37.29,48.32,47.66,36.6a37.4,37.4,0,0,1,14.79-9.92,197.64,197.64,0,0,1-142.83,171Z"></path>
+        </symbol>
+        <symbol id="next1" viewBox="0 0 426.67 426.67">
+            <path d="M213.33,0C142.93,0,74.67,36.27,36.27,93.87c-6.4,10.66-4.27,23.46,6.4,29.86C51.2,130.13,64,128,70.4,119.47c32-49.07,85.33-76.8,142.93-76.8C307.2,42.67,384,119.47,384,213.33S307.2,384,213.33,384c-57.6,0-110.93-27.73-142.93-76.8-6.4-8.53-19.2-10.67-27.73-4.27-10.67,6.4-12.8,19.2-6.4,29.87a213,213,0,0,0,177.06,93.87c117.34,0,213.34-96,213.34-213.34S330.67,0,213.33,0ZM177.07,283.73a20.62,20.62,0,0,0,0,29.87A23,23,0,0,0,192,320a23,23,0,0,0,14.93-6.4l85.34-85.33c2.13-2.14,4.26-4.27,4.26-6.4s2.14-4.27,2.14-8.54c0-2.13,0-6.4-2.14-8.53,0-2.13-2.13-4.27-4.26-6.4l-85.34-85.33a21.11,21.11,0,0,0-29.86,29.86L226.13,192H21.33C8.53,192,0,200.53,0,213.33s8.53,21.34,21.33,21.34h204.8Z"></path>
+        </symbol>
+        <symbol id="icon_fav1" viewBox="0 0 65.94 54.5">
+            <path d="M32.89,54.5a2.84,2.84,0,0,1-1.3-.4l-.2-.2c-4.7-3.9-20.6-17-26.3-23.3-6.8-7.6-6.8-18.5.1-25.4a18.11,18.11,0,0,1,25.4,0L33,7.7l2.4-2.4A17.86,17.86,0,0,1,48.09,0a18.19,18.19,0,0,1,12.7,5.2c6.8,6.8,6.9,17.7.1,25.3-6.6,7.3-26.4,23.4-26.5,23.5a2.08,2.08,0,0,1-1.2.5ZM17.79,4A13.85,13.85,0,0,0,8,8.1c-5.3,5.3-5.3,13.8.1,19.8,5.2,5.8,19.6,17.7,24.3,21.6l.6.5.6-.5c8.6-7.1,19.7-16.6,24.2-21.6,5.4-6,5.4-14.5.1-19.8A13.45,13.45,0,0,0,48.09,4a13.84,13.84,0,0,0-9.9,4.1l-3.8,3.8a2,2,0,0,1-1.4.6h-.4a2.81,2.81,0,0,1-1.1-.5l-3.8-3.8A13.6,13.6,0,0,0,17.79,4Z"></path>
+        </symbol>
+        <symbol id="icon_fav2" viewBox="0 0 65.94 54.5">
+            <path d="M32.89,54.5a2.84,2.84,0,0,1-1.3-.4l-.2-.2c-4.7-3.9-20.6-17-26.3-23.3-6.8-7.6-6.8-18.5.1-25.4a18.11,18.11,0,0,1,25.4,0L33,7.7l2.4-2.4A17.86,17.86,0,0,1,48.09,0a18.19,18.19,0,0,1,12.7,5.2c6.8,6.8,6.9,17.7.1,25.3-6.6,7.3-26.4,23.4-26.5,23.5a2.08,2.08,0,0,1-1.2.5Z"></path>
+        </symbol>
+        <symbol id="select" viewBox="0 0 360.29 511.88">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill-rule: evenodd
+                    }
+                </style>
+            </defs>
+            <path class="cls-1" d="M45,5.71,189.56,114,349.05,233.47a28.13,28.13,0,0,1,0,45L189.56,398,45,506.27A28.14,28.14,0,0,1,0,483.75V28.24A27.56,27.56,0,0,1,15.55,3.07,27.59,27.59,0,0,1,45,5.71Z"></path>
+        </symbol>
+        <symbol id="nav" viewBox="0 0 456.8 450">
+            <path d="M30.4,60.8A30.4,30.4,0,0,1,30.4,0h396a30.4,30.4,0,1,1,0,60.8H30.4Z"></path>
+            <path d="M30.4,255.4a30.4,30.4,0,1,1,0-60.8H287.8a30.4,30.4,0,0,1,0,60.8Z"></path>
+            <path d="M30.4,450a30.4,30.4,0,0,1,0-60.8h396a30.4,30.4,0,1,1,0,60.8H30.4Z"></path>
+        </symbol>
+        <symbol id="right" viewBox="0 0 24 24">
+            <path d="M13.7 11.975L8.75 7.02502L10.375 5.40002L16.95 11.975L10.375 18.525L8.75 16.9L13.7 11.975Z"></path>
+        </symbol>
+    </defs>
+</svg>
+
+<header id = "header">
+
+</header>
+
+<main class="wrapper content-top" style="height: auto !important; min-height: 0px !important;">
+
+    <div class="detail-left office-detail-left" style="height: auto !important;">
+        <div class="success-wrap">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <div class="success-text" id="lang_succeed">Successfully submitted</div>
+                <div class="back-btn" onclick="returnToList()" id="lang_back">Back to homepage</div>
+            </div>
+        </div>
+
+        <div id="shareDiv">
+            <div class="social-share">
+                <ul class="shareUl">
+                    <li>
+                        <a class="social-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://quizeverything.site_testCar" title="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn instagram" href="https://www.instagram.com" title="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn twitter" href="https://twitter.com/intent/tweet?url=https://quizeverything.site_testCar" title="Twitter" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn youtube" href="https://www.youtube.com" title="YouTube" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn whatsapp" href="https://api.whatsapp.com/send?text=https://quizeverything.site_testCar" title="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https://quizeverything.site_testCar" title="Pinterest" target="_blank">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn snapchat" href="https://www.snapchat.com" title="Snapchat" target="_blank">
+                            <i class="fab fa-snapchat-ghost"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-btn messenger" href="https://www.messenger.com/t/?link=https://quizeverything.site_testCar" title="Messenger" target="_blank">
+                            <i class="fab fa-facebook-messenger"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <aside class="detail-right" style="height: auto !important;">
+        <div class="most-read" style="height: auto !important;">
+            <h2 class="title_box">Featured Posts</h2>
+
+            <ul class="most-list" style="height: auto !important;">
+                <li>
+                    <div class="most-box">
+                        <a href="/posts/6-essential-facts-about-dental-implants-before-getting-them/" class="href-item"></a>
+                        <a href="/posts/category/dental-implants/">
+                            <div class="most-cate">Dental Implants</div>
+                        </a>
+                        <img loading="lazy" src="//cdn.uslowcostdental.com/Images/cover/6-essential-facts-about-dental-implants-before-getting-them.webp" alt="6-essential-facts-about-dental-implants-before-getting-them" class="most-img">
+                        <h5 class="most-tit">6 Essential Facts About Dental Implants Before Getting Them</h5>
+                        <div class="most-bottom">
+                            <span class="most-date">February 05,2024</span>
+                            <div class="most-more">Read More</div>
+                        </div>
+                    </div>
+                </li><li>
+                <div class="most-box">
+                    <a href="/posts/single-tooth-and-full-mouth-dental-implants-cost/" class="href-item"></a>
+                    <a href="/posts/category/dental-implants/">
+                        <div class="most-cate">Dental Implants</div>
+                    </a>
+                    <img loading="lazy" src="//cdn.uslowcostdental.com/Images/cover/single-tooth-and-full-mouth-dental-implants-cost.webp" alt="single-tooth-and-full-mouth-dental-implants-cost" class="most-img">
+                    <h5 class="most-tit">Single Tooth And Full Mouth Dental Implants Cost</h5>
+                    <div class="most-bottom">
+                        <span class="most-date">February 05,2024</span>
+                        <div class="most-more">Read More</div>
+                    </div>
+                </div>
+            </li><li>
+                <div class="most-box">
+                    <a href="/posts/5-simple-ways-to-get-low-cost-dental-implants/" class="href-item"></a>
+                    <a href="/posts/category/dental-implants/">
+                        <div class="most-cate">Dental Implants</div>
+                    </a>
+                    <img loading="lazy" src="//cdn.uslowcostdental.com/Images/cover/5-simple-ways-to-get-low-cost-dental-implants.webp" alt="5-simple-ways-to-get-low-cost-dental-implants" class="most-img">
+                    <h5 class="most-tit">5 Simple Ways To Get Low-Cost Dental Implants</h5>
+                    <div class="most-bottom">
+                        <span class="most-date">May 31,2023</span>
+                        <div class="most-more">Read More</div>
+                    </div>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </aside>
+
+</main>
+
+<footer id = "footer">
+</footer>
+
+<script src="./js/jquery-3.0.0.min.js"></script>
+<script src="./js/main.js?v=1.05"></script>
+<script>
+    // 加载 header
+    fetch('./header.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+
+            $(".icon-nav").click(function() {
+                $(".nav-cover").toggleClass('expand');
+                $(".header-nav").toggleClass('expand');
+            })
+            $(".nav-cover").click(function() {
+                $(".nav-cover").toggleClass('expand');
+                $(".header-nav").toggleClass('expand');
+            })
+
+            $(".nav-item.expand .nav-con").on('click', function(e) {
+                if ($(e.target).closest('.icon-go').length) {
+                    e.preventDefault();
+                    $(this).parent().find(".nav-sub-list").toggleClass("expand");
+                }
+            });
+        });
+
+    // 加载 footer
+    fetch('./footer.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+</script>
+
+<script type="module">
+    import { fetchAllStates } from './js/supabaseApi.js';
+
+    function renderStates(states) {
+        const list = document.getElementById('stateList');
+
+        list.innerHTML = states.map(state => {
+            const name = state.state; // ⚠️ 取决于你数据库字段
+
+            return `
+            <li class="cityitm">
+                <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
+                    ${name}
+                </a>
+            </li>
+        `;
+        }).join('');
+    }
+
+    async function init() {
+        const res = await fetchAllStates();
+
+        console.log('返回数据:', res);
+
+        if (res.error) {
+            console.error(res.error);
+            return;
+        }
+
+        renderStates(res.data); // ✅ 必须是数组
+    }
+
+    init();
+</script>
+
+<script>
+    function returnToList(){
+
+        let list_href = `./state.html`
+
+        window.location.href = list_href;
+    }
+</script>
+</body>
+</html>

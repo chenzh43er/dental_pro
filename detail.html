@@ -118,20 +118,10 @@
         </svg>
       </a>
     </li>        </ul>
-    <div class="more">
-      <!-- <div class="like">
-          <div class="like_icon_inside">
-              <svg class="icon_fav icon_fav1">
-                  <use xlink:href="#icon_fav1"></use>
-              </svg>
-              <svg class="icon_fav icon_fav2">
-                  <use xlink:href="#icon_fav2"></use>
-              </svg>
-              <div class="add-fly"><span class="add-fly-item"></span></div>
-          </div>
-              <span class="addto">Add to&nbsp;</span>Favorites
-      </div> -->
-      <a href="/al/birmingham/crestwood-medical-center-arms/" class="next-clinic-btn"><svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>Next Free Dental <span class="addto">Care</span></a>
+    <div class="more" id = "moreHtml">
+      <a href="/al/birmingham/crestwood-medical-center-arms/" class="next-clinic-btn">
+        <svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>
+        Next Free Dental <span class="addto">Care</span></a>
     </div>
     <div class="dt-provided">
       <div class="map">
@@ -190,7 +180,8 @@
       <div class="info">
         <ul class="service-wrap"><li><span>Vision</span></li><li><span>Social Services</span></li><li><span>Primary Care</span></li><li><span>Pediatric</span></li><li><span>Medical</span></li><li><span>Dental</span></li><li><span>Adults</span></li></ul>                    </div>
     </div>                                    <div class="next-clinic-wl">
-      <a href="/al/birmingham/" class="next-clinic-btn"><svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>Back To The List</a>
+      <a href="/al/birmingham/" class="next-clinic-btn">
+        <svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>Back To The List</a>
     </div>
     </div>
 
@@ -258,8 +249,8 @@
     <img src="/Public/Images/arrow.png" class="arrow" alt="arrow">
     Click Allow to get more information on Dental Services for free!    </div>
 </div>
-<script src="/Public/Js/jquery-3.0.0.min.js"></script>
-<script src="/Public/Js/main.js?v=1.05"></script>
+<script src="./js/jquery-3.0.0.min.js"></script>
+<script src="./js/main.js?v=1.05"></script>
 <script>
   // 加载 header
   fetch('./header.html')
@@ -325,6 +316,149 @@
   }
 
   init();
+</script>
+
+<script type="module">
+  import { fetchDentistDetail } from './js/supabaseApi.js'; // 替换为你的路径
+
+  async function initDetailPage() {
+    // 1️⃣ 从 URL 获取 nake_name 参数
+    const params = new URLSearchParams(window.location.search);
+    const nake_name = params.get('dental'); // url 示例: ?dental=mpower-health-center
+
+    if (!nake_name) {
+      console.error('没有传递 nake_name 参数');
+      return;
+    }
+
+    // 2️⃣ 查询数据库
+    const { data: dentist, error } = await fetchDentistDetail(nake_name);
+    if (error || !dentist) {
+      console.error('查询失败或无数据', error);
+      return;
+    }
+
+    // 3️⃣ 渲染基本信息
+    document.querySelector('.title-h2').textContent = dentist.name || 'Clinic Name';
+    document.querySelector('.office-detail-left .info li:nth-child(1) .info_span').textContent = dentist.address || '';
+    document.querySelector('.office-detail-left .info li:nth-child(2) .info_span').textContent = dentist.phone || '';
+
+    const websiteLink = document.querySelector('.office-detail-left .info li:nth-child(3) a.info_span');
+    if (websiteLink) {
+      websiteLink.href = dentist.website || '#';
+      websiteLink.textContent = 'Visit Dental Official Website';
+    }
+
+    // 4️⃣ 渲染地图
+    const mapIframe = document.querySelector('.dt-provided .map iframe');
+    if (mapIframe) {
+      const addressForMap = encodeURIComponent(dentist.address || '');
+      mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDuo4Zc22ZUqqlBVJ04Inn2bTzRft3I0AA&q=${addressForMap}`;
+    }
+
+    // 5️⃣ 解析 detail_raw
+    let detailData = {};
+    try {
+      detailData = JSON.parse(dentist.detail_raw || '{}');
+    } catch (e) {
+      console.warn('detail_raw 解析失败', e);
+    }
+
+    const infoBox = document.querySelector('.dt-provided.dt-info-box');
+    if (!infoBox) return;
+
+    // 6️⃣ 动态渲染 KV 信息
+    const kvMapping = {
+      accepts: 'Accepts',
+      hours_of_operations: 'Hours Of Operations',
+      eligibility_income: 'Eligibility Income',
+      cost: 'Cost',
+      supported_langauge: 'Supported Language',
+      details_area: 'Details Area',
+      services_provided: 'Services Provided'
+    };
+
+    let html = '';
+
+    for (const [key, title] of Object.entries(kvMapping)) {
+      const values = detailData[key];
+      if (!values || !Array.isArray(values) || values.length === 0) continue;
+
+      if (key === 'services_provided') {
+        html += `
+            <div class="dt-info">
+                <h2 class="s-tl">${title}</h2>
+                <div class="info">
+                    <ul class="service-wrap">
+                        ${values.map(v => `<li><span>${v}</span></li>`).join('')}
+                    </ul>
+                </div>
+            </div>`;
+      } else {
+        html += `
+            <div class="dt-info">
+                <h2 class="s-tl">${title}</h2>
+                <div class="info">
+                    ${values.join('<br>')}<br>
+                </div>
+            </div>`;
+      }
+    }
+
+    // 7️⃣ About This Service 特殊处理
+    if (detailData.about_this_service && detailData.about_this_service.length > 0) {
+      html = `
+        <div class="dt-info">
+            <h2 class="s-tl">About This Service</h2>
+            <div class="info">
+                <p>The following is a list of services that ${dentist.name} provides to customers:<br></p>
+                <ul>
+                    ${detailData.about_this_service.map(s => `<li>&nbsp;${s}</li>`).join('')}
+                </ul>
+                <br>
+                This Clinic is based on Sliding scale fees which are variable prices for products, services, or taxes based on a customer's ability to pay. Such fees are thereby reduced for those who have lower incomes, or alternatively, less money to spare after their personal expenses, regardless of income<br><br>
+                They especially focus on serving individuals who are low-income, uninsured, underinsured, and those who could not otherwise afford medical and dental care.
+                <p></p>
+                <break_tag></break_tag>
+            </div>
+        </div>` + html;
+    }
+
+    // 8️⃣ Dental Costs
+    if (detailData.dental_costs && detailData.dental_costs.length > 0) {
+      html += `
+        <div class="dt-info">
+            <h2 class="s-tl">Dental Costs</h2>
+            <div class="info">
+                <h4>Dental Costs - Crowd Sourced</h4>
+                <p>${detailData.dental_costs.join('<br>')}</p>
+            </div>
+        </div>`;
+    }
+
+    // 9️⃣ Back To List
+    const backUrl = `./state.html`;
+    html += `
+        <div class="next-clinic-wl">
+            <a href="${backUrl}" class="next-clinic-btn">
+                <svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>
+                Back To The List
+            </a>
+        </div>`;
+
+    // 10️⃣ 替换 infoBox 内容
+    infoBox.innerHTML = html;
+
+    init(dentist)
+  }
+
+  function init(dentist){
+      document.getElementById("moreHtml").innerHTML = `<a href="./form.html?state=${dentist.state}&city=${dentist.city}&dental=${dentist.nake_name}" class="next-clinic-btn">
+        <svg class="icon-clinic-button"><use xlink:href="#next1"></use></svg>
+        Contact Us <span class="addto"></span></a>`
+  }
+
+  window.addEventListener('DOMContentLoaded', initDetailPage);
 </script>
 
 </body>
