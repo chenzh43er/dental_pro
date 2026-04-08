@@ -8,6 +8,7 @@
     <meta name="description" content="USLowCostDental provides low-cost and free dental clinic information in the United States, making it easy for you to find the best dental services.">
     <link rel="preload" as="style" href="./css/style.css">
     <link type="text/css" rel="stylesheet" href="./css/style.css">
+    <script src="./js/utlParam.js"></script>
 </head>
 
 <body>
@@ -93,7 +94,7 @@
             <div class="c-l">SMILE BRIGHT WITH FREE CARE</div>
             <h1 class="indexitm-banner-tit"><span>Free &amp; Low Cost</span>Dental Care</h1>
             <div class="sub-tit">Find affordable dental clinics near me.</div>
-            <a class="loc-btn" href="/list/">
+            <a class="loc-btn" href="./state.html">
                 Start Here
                 <svg class="icon-loc">
                     <use xlink:href="#right-arrow"></use>
@@ -119,19 +120,19 @@
                 </svg>Today's Most Searched</h4>
                 <ul class="most-search">
                     <li>
-                        <a href="/list/ca/" class="most-search-link">
+                        <a href="./city.html?state=California" class="most-search-link">
                             <span><b>1</b>California</span>
                             <span class="num">14,927</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/list/al/" class="most-search-link">
+                        <a href="./city.html?state=Alabama" class="most-search-link">
                             <span><b>2</b>Alabama</span>
                             <span class="num">13,529</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/list/fl/" class="most-search-link">
+                        <a href="./city.html?state=Florida" class="most-search-link">
                             <span><b>3</b>Florida</span>
                             <span class="num">13,286</span>
                         </a>
@@ -139,58 +140,8 @@
                 </ul>
             </div>
             <div class="indexitm-r">
-                <ul class="city-list">
+                <ul class="city-list" id = "innerStateList">
                     <li class="cityitm"><a href="/list/al/" class="cityitm-link">Alabama <span class="num">421 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ak/" class="cityitm-link">Alaska <span class="num">95 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/az/" class="cityitm-link">Arizona <span class="num">674 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ar/" class="cityitm-link">Arkansas <span class="num">182 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ca/" class="cityitm-link">California <span class="num">1,867 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/co/" class="cityitm-link">Colorado <span class="num">659 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ct/" class="cityitm-link">Connecticut <span class="num">318 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/de/" class="cityitm-link">Delaware <span class="num">114 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/fl/" class="cityitm-link">Florida <span class="num">977 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ga/" class="cityitm-link">Georgia <span class="num">352 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/hi/" class="cityitm-link">Hawaii <span class="num">151 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/id/" class="cityitm-link">Idaho <span class="num">158 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/il/" class="cityitm-link">Illinois <span class="num">332 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/in/" class="cityitm-link">Indiana <span class="num">270 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ia/" class="cityitm-link">Iowa <span class="num">125 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ks/" class="cityitm-link">Kansas <span class="num">199 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ky/" class="cityitm-link">Kentucky <span class="num">292 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/la/" class="cityitm-link">Louisiana <span class="num">319 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/me/" class="cityitm-link">Maine <span class="num">75 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/md/" class="cityitm-link">Maryland <span class="num">258 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ma/" class="cityitm-link">Massachusetts <span class="num">415 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/mi/" class="cityitm-link">Michigan <span class="num">423 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/mn/" class="cityitm-link">Minnesota <span class="num">185 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ms/" class="cityitm-link">Mississippi <span class="num">184 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/mo/" class="cityitm-link">Missouri <span class="num">460 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/mt/" class="cityitm-link">Montana <span class="num">63 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ne/" class="cityitm-link">Nebraska <span class="num">160 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nv/" class="cityitm-link">Nevada <span class="num">339 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nh/" class="cityitm-link">New Hampshire <span class="num">68 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nj/" class="cityitm-link">New Jersey <span class="num">331 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nm/" class="cityitm-link">New Mexico <span class="num">76 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ny/" class="cityitm-link">New York <span class="num">921 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nc/" class="cityitm-link">North Carolina <span class="num">461 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/nd/" class="cityitm-link">North Dakota <span class="num">31 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/oh/" class="cityitm-link">Ohio <span class="num">454 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ok/" class="cityitm-link">Oklahoma <span class="num">401 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/or/" class="cityitm-link">Oregon <span class="num">299 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/pa/" class="cityitm-link">Pennsylvania <span class="num">549 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ri/" class="cityitm-link">Rhode Island <span class="num">82 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/sc/" class="cityitm-link">South Carolina <span class="num">270 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/sd/" class="cityitm-link">South Dakota <span class="num">86 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/tn/" class="cityitm-link">Tennessee <span class="num">405 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/tx/" class="cityitm-link">Texas <span class="num">982 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/ut/" class="cityitm-link">Utah <span class="num">166 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/vt/" class="cityitm-link">Vermont <span class="num">53 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/va/" class="cityitm-link">Virginia <span class="num">367 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/wa/" class="cityitm-link">Washington <span class="num">490 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/dc/" class="cityitm-link">Washington, DC <span class="num">35 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/wv/" class="cityitm-link">West Virginia <span class="num">77 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/wi/" class="cityitm-link">Wisconsin <span class="num">361 Clinics</span></a></li>
-                    <li class="cityitm"><a href="/list/wy/" class="cityitm-link">Wyoming <span class="num">11 Clinics</span></a></li>
                 </ul>
             </div>
         </div>
@@ -342,6 +293,50 @@
         });
 </script>
 
+<script type="module">
+    import { fetchAllStates } from './js/supabaseApi.js';
+
+    function renderStates(states) {
+        const list = document.getElementById('stateList');
+
+        list.innerHTML = states.map(state => {
+            const name = state.state; // ⚠️ 取决于你数据库字段
+
+            return `
+            <li class="cityitm">
+                <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
+                    ${name}
+                </a>
+            </li>
+        `;
+        }).join('');
+
+        const innerList = document.getElementById("innerStateList");
+        innerList.innerHTML = states.map(state => {
+            const name = state.state; // ⚠️ 取决于你数据库字段
+
+            return `
+            <li class="cityitm"><a href="/list/al/" class="cityitm-link">${name} <span class="num">${state.total} Clinics</span></a></li>
+        `;
+        }).join('');
+
+    }
+
+    async function init() {
+        const res = await fetchAllStates();
+
+        console.log('返回数据:', res);
+
+        if (res.error) {
+            console.error(res.error);
+            return;
+        }
+
+        renderStates(res.data); // ✅ 必须是数组
+    }
+
+    init();
+</script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
     <link rel="preload" as="style" href="./css/style.css?v=1.5">
     <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
+    <script src="./js/utlParam.js"></script>
 </head>
 <body>
 <header>
@@ -32,7 +33,7 @@
         </label>
         <nav class="nav">
             <ul class="nav-ul">
-                <li class="cor-category"><a href="/list/">Start Here</a></li>
+                <li class="cor-category"><a href="./state.html">Start Here</a></li>
                 <li class="cor-category"><a href="/posts/">Blog</a></li>
                 <li class="cor-category select-city">
                     <label for="select-city-input" class="select-city-btn">
@@ -41,10 +42,9 @@
                             <use xlink:href="#select"></use>
                         </svg>
                     </label>
-                    <ul class="city-list">
-                        <li class="cityitm"><a href="/list/al/" class="cityitm-link">Alabama</a></li><li class="cityitm"><a href="/list/ak/" class="cityitm-link">Alaska</a></li><li class="cityitm"><a href="/list/az/" class="cityitm-link">Arizona</a></li><li class="cityitm"><a href="/list/ar/" class="cityitm-link">Arkansas</a></li><li class="cityitm"><a href="/list/ca/" class="cityitm-link">California</a></li><li class="cityitm"><a href="/list/co/" class="cityitm-link">Colorado</a></li><li class="cityitm"><a href="/list/ct/" class="cityitm-link">Connecticut</a></li><li class="cityitm"><a href="/list/de/" class="cityitm-link">Delaware</a></li><li class="cityitm"><a href="/list/fl/" class="cityitm-link">Florida</a></li><li class="cityitm"><a href="/list/ga/" class="cityitm-link">Georgia</a></li><li class="cityitm"><a href="/list/hi/" class="cityitm-link">Hawaii</a></li><li class="cityitm"><a href="/list/id/" class="cityitm-link">Idaho</a></li><li class="cityitm"><a href="/list/il/" class="cityitm-link">Illinois</a></li><li class="cityitm"><a href="/list/in/" class="cityitm-link">Indiana</a></li><li class="cityitm"><a href="/list/ia/" class="cityitm-link">Iowa</a></li><li class="cityitm"><a href="/list/ks/" class="cityitm-link">Kansas</a></li><li class="cityitm"><a href="/list/ky/" class="cityitm-link">Kentucky</a></li><li class="cityitm"><a href="/list/la/" class="cityitm-link">Louisiana</a></li><li class="cityitm"><a href="/list/me/" class="cityitm-link">Maine</a></li><li class="cityitm"><a href="/list/md/" class="cityitm-link">Maryland</a></li><li class="cityitm"><a href="/list/ma/" class="cityitm-link">Massachusetts</a></li><li class="cityitm"><a href="/list/mi/" class="cityitm-link">Michigan</a></li><li class="cityitm"><a href="/list/mn/" class="cityitm-link">Minnesota</a></li><li class="cityitm"><a href="/list/ms/" class="cityitm-link">Mississippi</a></li><li class="cityitm"><a href="/list/mo/" class="cityitm-link">Missouri</a></li><li class="cityitm"><a href="/list/mt/" class="cityitm-link">Montana</a></li><li class="cityitm"><a href="/list/ne/" class="cityitm-link">Nebraska</a></li><li class="cityitm"><a href="/list/nv/" class="cityitm-link">Nevada</a></li><li class="cityitm"><a href="/list/nh/" class="cityitm-link">New Hampshire</a></li><li class="cityitm"><a href="/list/nj/" class="cityitm-link">New Jersey</a></li><li class="cityitm"><a href="/list/nm/" class="cityitm-link">New Mexico</a></li><li class="cityitm"><a href="/list/ny/" class="cityitm-link">New York</a></li><li class="cityitm"><a href="/list/nc/" class="cityitm-link">North Carolina</a></li><li class="cityitm"><a href="/list/nd/" class="cityitm-link">North Dakota</a></li><li class="cityitm"><a href="/list/oh/" class="cityitm-link">Ohio</a></li><li class="cityitm"><a href="/list/ok/" class="cityitm-link">Oklahoma</a></li><li class="cityitm"><a href="/list/or/" class="cityitm-link">Oregon</a></li><li class="cityitm"><a href="/list/pa/" class="cityitm-link">Pennsylvania</a></li><li class="cityitm"><a href="/list/ri/" class="cityitm-link">Rhode Island</a></li><li class="cityitm"><a href="/list/sc/" class="cityitm-link">South Carolina</a></li><li class="cityitm"><a href="/list/sd/" class="cityitm-link">South Dakota</a></li><li class="cityitm"><a href="/list/tn/" class="cityitm-link">Tennessee</a></li><li class="cityitm"><a href="/list/tx/" class="cityitm-link">Texas</a></li><li class="cityitm"><a href="/list/ut/" class="cityitm-link">Utah</a></li><li class="cityitm"><a href="/list/vt/" class="cityitm-link">Vermont</a></li><li class="cityitm"><a href="/list/va/" class="cityitm-link">Virginia</a></li><li class="cityitm"><a href="/list/wa/" class="cityitm-link">Washington</a></li><li class="cityitm"><a href="/list/dc/" class="cityitm-link">Washington, DC</a></li><li class="cityitm"><a href="/list/wv/" class="cityitm-link">West Virginia</a></li><li class="cityitm"><a href="/list/wi/" class="cityitm-link">Wisconsin</a></li><li class="cityitm"><a href="/list/wy/" class="cityitm-link">Wyoming</a></li>            </ul>
+                    <ul class="city-list" id = "stateList">
+                    </ul>
                 </li>
-                <!-- <li class="cor-category"><div class="google-img-wrap">LogIn</div></li> -->
             </ul>
             <label for="hd-menu-input" class="nav-label">
                 <span></span>

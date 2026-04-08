@@ -10,6 +10,7 @@
 
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
+  <script src="./js/utlParam.js"></script>
   
 </head>
 
@@ -632,6 +633,41 @@
           .then(data => {
             document.getElementById('footer').innerHTML = data;
           });
+</script>
+
+<script type="module">
+  import { fetchAllStates } from './js/supabaseApi.js';
+
+  function renderStates(states) {
+    const list = document.getElementById('stateList');
+
+    list.innerHTML = states.map(state => {
+      const name = state.state; // ⚠️ 取决于你数据库字段
+
+      return `
+            <li class="cityitm">
+                <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
+                    ${name}
+                </a>
+            </li>
+        `;
+    }).join('');
+  }
+
+  async function init() {
+    const res = await fetchAllStates();
+
+    console.log('返回数据:', res);
+
+    if (res.error) {
+      console.error(res.error);
+      return;
+    }
+
+    renderStates(res.data); // ✅ 必须是数组
+  }
+
+  init();
 </script>
 
 </body>
