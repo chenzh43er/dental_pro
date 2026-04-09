@@ -109,7 +109,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="content" id = "contentMain">
     <main class="main-office">
       <p>Uslowcostdental.com is a website that provides information on free and low cost dental clinics in the United States. We aim to provide accurate and up-to-date information to our visitors. However, we do not guarantee the accuracy, completeness, or reliability of the information provided on our website. The information we provide is for informational purposes only, and we do not endorse, verify, or recommend any of the dental clinics listed on our website. Any action you take based on the information provided on our website is solely at your own risk.</p><br>
       <b>Limitation of Liability</b>
@@ -194,6 +194,18 @@
 
     renderStates(res.data); // ✅ 必须是数组
   }
+
+  const host = window.location.host;
+
+  document.getElementById("contentMain").innerHTML = `    <main class="main-office">
+      <p>${host} is a website that provides information on free and low cost dental clinics in the United States. We aim to provide accurate and up-to-date information to our visitors. However, we do not guarantee the accuracy, completeness, or reliability of the information provided on our website. The information we provide is for informational purposes only, and we do not endorse, verify, or recommend any of the dental clinics listed on our website. Any action you take based on the information provided on our website is solely at your own risk.</p><br>
+      <b>Limitation of Liability</b>
+      <p>We strive to keep our information on low-cost dental clinics accurate, but we can't be responsible for any losses or damages from its use, including errors or updates. Use our website at your own risk, and we recommend verifying details about costs or eligibility with official sources or trusted providers.</p><br>
+      <b>Disclaimer of Warranty</b>
+      <p>The information on low-cost dental clinics is provided "as is," without guarantees of accuracy or completeness. We cannot ensure it is current or suitable for your needs. Please review carefully and ask questions, as availability and terms may vary.</p><br>
+      <b>Disclaimers on Content</b>
+      <p>Our site may link to external websites we don't control or endorse. We're not responsible for the accuracy of information about low-cost dental clinics on these sites. Please verify details and be cautious when visiting third-party links. Relying on this information is your responsibility, and we are not liable for any issues that may occur.</p>    </main>
+`
 
   init();
 </script>

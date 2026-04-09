@@ -110,7 +110,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="content" id = "contentMain">
     <main class="main-office">
       <p>This privacy policy will explain how our organization uses the personal data we collect from you when you use our website.</p>
       <b>Types of Data Collected</b>
@@ -203,6 +203,25 @@
 
     renderStates(res.data); // ✅ 必须是数组
   }
+
+  const host = window.location.host;
+
+  document.getElementById("contentMain").innerHTML = `    <main class="main-office">
+      <p>This privacy policy will explain how our organization uses the personal data we collect from you when you use our website.</p>
+      <b>Types of Data Collected</b>
+      <p>Usage data is collected automatically when you use the service. We may also gather information your browser sends when you visit our service or access it through a mobile device.</p>
+      <p>Our website uses Google Analytics cookies, which are placed on your device during visits. These cookies do not store personal information like names or email addresses. Instead, they track anonymous user behavior to provide insights into website performance.</p><br>
+      <b>Cookies</b>
+      <p>We utilize Cookies and other tracking technologies to monitor the activity on our platform and store specific data. These tracking technologies encompass beacons, tags, and scripts, which aid in gathering and monitoring information to enhance and analyze our services.</p><br>
+      <b>Use of Your Personal Data</b>
+      <p>To effectively run our service, we will monitor its usage. We will also manage your account and registration to provide you with access to different features as a user. Additionally, we will use your personal data to fulfill contracts and purchase agreements. Furthermore, we may utilize your information for various purposes such as data analysis, identifying trends, assessing the success of promotional efforts, and enhancing our overall service, products, marketing, and user experience.</p><br>
+      <b>Security of Your Personal Data</b>
+      <p>The security of your personal data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal data, we cannot guarantee its absolute security.</p><br>
+      <b>Links to Other Websites</b>
+      <p>Our service may contain links to other websites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p><br>
+      <b>Contact Us</b>
+      <p>If you have any questions about this Privacy Policy, you can contact us via support@${host}</p>    </main>
+`
 
   init();
 </script>

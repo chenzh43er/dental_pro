@@ -105,8 +105,8 @@
 <div class="about-us">
   <div class="about-us-container">
     <h2 class="about-us-title">About Us</h2>
-    <p class="about-us-content">
-      Welcome to USLowCostDental, a website dedicated to helping people find free and low cost dental clinics near them in the US. Our website provides detailed information such as the address, phone number, and services provided in each dental clinic.
+    <p class="about-us-content" id = "aboutUsContent">
+      Welcome to uslowcostdental, a website dedicated to helping people find free and low cost dental clinics near them in the US. Our website provides detailed information such as the address, phone number, and services provided in each dental clinic.
       Please feel free to contact us if you need any further information via support@uslowcostdental.com.
     </p>
   </div>
@@ -270,6 +270,11 @@
 
     renderStates(res.data); // ✅ 必须是数组
   }
+
+  const host = window.location.host;
+
+  document.getElementById("aboutUsContent").innerText = `      Welcome to ${host}, a website dedicated to helping people find free and low cost dental clinics near them in the US. Our website provides detailed information such as the address, phone number, and services provided in each dental clinic.
+      Please feel free to contact us if you need any further information via support@${host}`
 
   init();
 </script>

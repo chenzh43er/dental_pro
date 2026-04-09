@@ -109,7 +109,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="content" id = "contentDcma">
     <main class="main-office">
       <p>The Digital Millennium Copyright Act (DMCA) is a federal law that protects copyright owners' rights in digital content. This law provides a mechanism for copyright owners to notify website and internet service providers (ISPs) of infringing content on their websites. If a website or ISP receives a DMCA notification, they are required to remove or disable access to the infringing content.</p><br>
       <b>Our DMCA Policy</b>
@@ -117,7 +117,6 @@
       <p>If you are a copyright owner and believe that your copyrighted work has been infringed upon on our website, you can submit a DMCA notification to us. Your notification must include the following information:</p>
       <ul><li>a physical or electronic signature of the copyright owner or their authorized representative;</li><li>a description of the copyrighted work or other intellectual property that you claim has been infringed;</li><li>a description of where the material that you claim is infringing is located on the site;</li><li>your address, telephone number, and email address;</li><li>a statement by you that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</li><li>a statement, under penalty of perjury, confirming your notice's accuracy and your authorization.</li></ul>
       <p>We encourage copyright owners to contact us first to resolve any issues related to copyright infringement. If you have any questions or concerns, please contact us directly via email at support@uslowcostdental.com.</p>    </main>
-
   </div>
 </div>
 
@@ -229,6 +228,17 @@
 
     renderStates(res.data); // ✅ 必须是数组
   }
+
+  const host = window.location.host;
+
+  document.getElementById("contentDcma").innerHTML = `    <main class="main-office">
+      <p>The Digital Millennium Copyright Act (DMCA) is a federal law that protects copyright owners' rights in digital content. This law provides a mechanism for copyright owners to notify website and internet service providers (ISPs) of infringing content on their websites. If a website or ISP receives a DMCA notification, they are required to remove or disable access to the infringing content.</p><br>
+      <b>Our DMCA Policy</b>
+      <p>At ${host}, we take copyright infringement seriously. If we receive a valid DMCA notification, we will promptly investigate the matter and remove the content from our website, if necessary. We will also notify the individual or organization that posted the infringing content and provide them with the opportunity to respond to the notification.</p>
+      <p>If you are a copyright owner and believe that your copyrighted work has been infringed upon on our website, you can submit a DMCA notification to us. Your notification must include the following information:</p>
+      <ul><li>a physical or electronic signature of the copyright owner or their authorized representative;</li><li>a description of the copyrighted work or other intellectual property that you claim has been infringed;</li><li>a description of where the material that you claim is infringing is located on the site;</li><li>your address, telephone number, and email address;</li><li>a statement by you that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</li><li>a statement, under penalty of perjury, confirming your notice's accuracy and your authorization.</li></ul>
+      <p>We encourage copyright owners to contact us first to resolve any issues related to copyright infringement. If you have any questions or concerns, please contact us directly via email at support@${host}</p>    </main>
+`
 
   init();
 </script>
