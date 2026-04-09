@@ -131,6 +131,11 @@
             height: 300px !important;
         }
     </style>
+    <style>
+        html {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body style="padding: 0px 0px ">
@@ -368,6 +373,7 @@
         }
 
         renderStates(res.data); // ✅ 必须是数组
+        document.documentElement.style.visibility = "visible";
     }
 
     init();

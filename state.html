@@ -10,6 +10,11 @@
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
   <script src="./js/utlParam.js"></script>
+  <style>
+    html {
+      visibility: hidden;
+    }
+  </style>
 
 <body style="padding: 0px 0px;">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -285,6 +290,7 @@
     }
 
     renderStates(res.data); // ✅ 必须是数组
+    document.documentElement.style.visibility = "visible";
   }
 
   init();

@@ -9,6 +9,11 @@
     <link rel="preload" as="style" href="./css/style.css">
     <link type="text/css" rel="stylesheet" href="./css/style.css">
     <script src="./js/utlParam.js"></script>
+    <style>
+        html {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -316,7 +321,7 @@
             const name = state.state; // ⚠️ 取决于你数据库字段
 
             return `
-            <li class="cityitm"><a href="/list/al/" class="cityitm-link">${name} <span class="num">${state.total} Clinics</span></a></li>
+            <li class="cityitm"><a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">${name} <span class="num">${state.total} Clinics</span></a></li>
         `;
         }).join('');
 
@@ -333,6 +338,7 @@
         }
 
         renderStates(res.data); // ✅ 必须是数组
+        document.documentElement.style.visibility = "visible";
     }
 
     init();

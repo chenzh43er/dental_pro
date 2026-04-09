@@ -11,7 +11,11 @@
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
   <script src="./js/utlParam.js"></script>
-  
+  <style>
+    html {
+      visibility: hidden;
+    }
+  </style>
 </head>
 
 <body aria-hidden="false" style="padding: 0px 0px ">
@@ -371,6 +375,7 @@
 
     renderList(res.data);
     renderPagination(currentPage, res.totalPages, state, city);
+    document.documentElement.style.visibility = "visible";
   }
 
   //

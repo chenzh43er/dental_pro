@@ -8,8 +8,11 @@
   <meta name="description" content="Choose your county to get details about dental clinics that offer affordable or free services. USLowCostDental always pays attention to your health.">  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
-
-
+  <style>
+    html {
+      visibility: hidden;
+    }
+  </style>
   </head>
 
 <body aria-hidden="false" style="">
@@ -314,7 +317,7 @@
     renderCity(citys.data,state); // ✅ 必须是数组
 
     document.getElementById("titleCity").innerText = `Free Dental Care In ${state}`
-
+    document.documentElement.style.visibility = "visible";
   }
 
   init();
