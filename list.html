@@ -10,6 +10,12 @@
 
   <link rel="preload" as="style" href="./css/style.css?v=1.5">
   <link type="text/css" rel="stylesheet" href="./css/style.css?v=1.5">
+
+  <link rel="icon" href="./img/91d69811-8b93-45be-a1bf-3b158b24e883.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/91d69811-8b93-45be-a1bf-3b158b24e883.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/91d69811-8b93-45be-a1bf-3b158b24e883.png">
+  <link rel="apple-touch-icon" href="./img/91d69811-8b93-45be-a1bf-3b158b24e883.png">
+
   <script src="./js/utlParam.js"></script>
   <style>
     html {
@@ -120,7 +126,7 @@
 </svg>
 
 <main class="wrapper content-top" style="height: auto !important; min-height: 0px !important;">
-  <h2 class="title-h2">
+  <h2 class="title-h2" id ="listTitle">
     Free Dental Care
     In Birmingham, Alabama    </h2>
   <div class="detail-left" style="height: auto !important;">
@@ -367,6 +373,10 @@
 
     renderList(res.data);
     renderPagination(currentPage, res.totalPages, state, city);
+
+    document.getElementById("listTitle").innerHTML = `Free Dental Care
+    In ${city}, ${state}    `
+
     document.documentElement.style.visibility = "visible";
   }
 
