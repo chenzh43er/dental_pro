@@ -19,6 +19,12 @@
 
     <script src="./js/utlParam.js"></script>
 
+    <style>
+        html {
+            visibility: hidden;
+        }
+    </style>
+
 </head>
 
 <body aria-hidden="false" style="padding: 0px 0px">
@@ -347,6 +353,8 @@
     renderPost();
 
     init();
+
+    document.documentElement.style.visibility = "visible";
 </script>
 </body>
 </html>
