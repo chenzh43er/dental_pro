@@ -110,26 +110,22 @@
   // ================================
   function renderStatesToSelect(states) {
     const select = document.querySelector('.select-location');
-
-    if (!select) {
-      console.error('找不到 .select-location');
-      return;
-    }
+    if (!select) return;
 
     const defaultOption = `
-      <option value="" class="select-loc-item">
-        Choose Your State
-      </option>
+        <option value="" class="select-loc-item">
+            Choose Your State
+        </option>
     `;
 
     const options = states.map(state => {
-      const name = state.state; // ⚠️ 根据你的字段改
+      const name = state.state;
 
       return `
-        <option value="./city.html?state=${name}" class="select-loc-item">
-          ${name}
-        </option>
-      `;
+            <option value="./city.html?state=${encodeURIComponent(name)}" class="select-loc-item">
+                ${name}
+            </option>
+        `;
     }).join('');
 
     select.innerHTML = defaultOption + options;
@@ -143,78 +139,130 @@
   }
 
   // ================================
-  // 初始化州数据
+  // 渲染州列表（两个区域）
   // ================================
-  async function initStateSelect() {
-    const res = await fetchAllStates();
+  function renderStatesList(states) {
+    const list = document.getElementById('stateList');
+    const innerList = document.getElementById('innerStateList');
 
-    console.log('州数据:', res);
+    if (list) {
+      list.innerHTML = states.map(state => {
+        const name = state.state;
 
-    if (res.error) {
-      console.error(res.error);
-      return;
+        return `
+                <li class="cityitm">
+                    <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
+                        ${name}
+                    </a>
+                </li>
+            `;
+      }).join('');
     }
 
-    renderStatesToSelect(res.data);
+    if (innerList) {
+      innerList.innerHTML = states.map(state => {
+        const name = state.state;
+
+        return `
+                <li class="cityitm">
+                    <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
+                        ${name} <span class="num">${state.total} Clinics</span>
+                    </a>
+                </li>
+            `;
+      }).join('');
+    }
   }
 
   // ================================
   // 加载 header
   // ================================
   async function loadHeader() {
+    const el = document.getElementById('header');
+    if (!el) return;
+
     const res = await fetch('./header.html');
-    const data = await res.text();
+    const html = await res.text();
+    el.innerHTML = html;
 
-    document.getElementById('header').innerHTML = data;
+    // ⚠️ 确保 jQuery 已加载
+    if (typeof $ !== 'undefined') {
 
-    // ⚠️ jQuery 必须已经在页面引入
-    $(".icon-nav").click(function() {
-      $(".nav-cover").toggleClass('expand');
-      $(".header-nav").toggleClass('expand');
-    });
+      $(".icon-nav").click(function() {
+        $(".nav-cover").toggleClass('expand');
+        $(".header-nav").toggleClass('expand');
+      });
 
-    $(".nav-cover").click(function() {
-      $(".nav-cover").toggleClass('expand');
-      $(".header-nav").toggleClass('expand');
-    });
+      $(".nav-cover").click(function() {
+        $(".nav-cover").toggleClass('expand');
+        $(".header-nav").toggleClass('expand');
+        $(".nav-modal").hide();
+      });
 
-    $(".nav-item.expand .nav-con").on('click', function(e) {
-      if ($(e.target).closest('.icon-go').length) {
-        e.preventDefault();
-        $(this).parent().find(".nav-sub-list").toggleClass("expand");
-      }
-    });
+      $(".nav-item.expand .nav-con").on('click', function(e) {
+        if ($(e.target).closest('.icon-go').length) {
+          e.preventDefault();
+          $(this).parent().find(".nav-sub-list").toggleClass("expand");
+        }
+      });
 
-    $(".icon-nav-btn").click(function () {
-      $(".nav-modal").toggle();
-      $("#hd-menu-input").prop("checked", false);
-      console.log("checked");
-    });
-
-    $(".nav-cover").click(function () {
-      $(".nav-modal").hide();
-      console.log("hide");
-    });
-
-    // ✅ header 插入后再初始化 select
-    await initStateSelect();
+      $(".icon-nav-btn").click(function () {
+        $(".nav-modal").toggle();
+        $("#hd-menu-input").prop("checked", false);
+      });
+    }
   }
 
   // ================================
   // 加载 footer
   // ================================
   async function loadFooter() {
-    const res = await fetch('./footer.html');
-    const data = await res.text();
+    const el = document.getElementById('footer');
+    if (!el) return;
 
-    document.getElementById('footer').innerHTML = data;
+    const res = await fetch('./footer.html');
+    const html = await res.text();
+    el.innerHTML = html;
+  }
+
+  // ================================
+  // 初始化 App（核心）
+  // ================================
+  async function initApp() {
+    try {
+      // 并行执行
+      const [_, __, res] = await Promise.all([
+        loadHeader(),
+        loadFooter(),
+        fetchAllStates()
+      ]);
+
+      console.log('州数据:', res);
+
+      if (res.error) {
+        console.error(res.error);
+        return;
+      }
+
+      const states = res.data || [];
+
+      // 渲染 UI
+      renderStatesToSelect(states);
+      renderStatesList(states);
+
+      // 页面显示（防止闪烁）
+      document.documentElement.style.visibility = "visible";
+
+    } catch (err) {
+      console.error('初始化失败:', err);
+    }
   }
 
   // ================================
   // 启动
   // ================================
-  loadHeader();
-  loadFooter();
+  initApp();
+
 </script>
 
 
