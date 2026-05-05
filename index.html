@@ -274,37 +274,119 @@
 </footer>
 
 <script src="./js/jquery-3.0.0.min.js"></script>
-<script>
+<script type="module">
+    import { fetchAllStates } from './js/supabaseApi.js';
+
+    // ================================
+    // 渲染 select
+    // ================================
+    function renderStatesToSelect(states) {
+        const select = document.querySelector('.select-location');
+
+        if (!select) {
+            console.error('找不到 .select-location');
+            return;
+        }
+
+        const defaultOption = `
+      <option value="" class="select-loc-item">
+        Choose Your State
+      </option>
+    `;
+
+        const options = states.map(state => {
+            const name = state.state; // ⚠️ 根据你的字段改
+
+            return `
+        <option value="./city.html?state=${name}" class="select-loc-item">
+          ${name}
+        </option>
+      `;
+        }).join('');
+
+        select.innerHTML = defaultOption + options;
+
+        // 跳转
+        select.addEventListener('change', (e) => {
+            if (e.target.value) {
+                window.location.href = e.target.value;
+            }
+        });
+    }
+
+    // ================================
+    // 初始化州数据
+    // ================================
+    async function initStateSelect() {
+        const res = await fetchAllStates();
+
+        console.log('州数据:', res);
+
+        if (res.error) {
+            console.error(res.error);
+            return;
+        }
+
+        renderStatesToSelect(res.data);
+    }
+
+    // ================================
     // 加载 header
-    fetch('./header.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('header').innerHTML = data;
+    // ================================
+    async function loadHeader() {
+        const res = await fetch('./header.html');
+        const data = await res.text();
 
-            $(".icon-nav").click(function() {
-                $(".nav-cover").toggleClass('expand');
-                $(".header-nav").toggleClass('expand');
-            })
-            $(".nav-cover").click(function() {
-                $(".nav-cover").toggleClass('expand');
-                $(".header-nav").toggleClass('expand');
-            })
+        document.getElementById('header').innerHTML = data;
 
-            $(".nav-item.expand .nav-con").on('click', function(e) {
-                if ($(e.target).closest('.icon-go').length) {
-                    e.preventDefault();
-                    $(this).parent().find(".nav-sub-list").toggleClass("expand");
-                }
-            });
+        // ⚠️ jQuery 必须已经在页面引入
+        $(".icon-nav").click(function() {
+            $(".nav-cover").toggleClass('expand');
+            $(".header-nav").toggleClass('expand');
         });
 
+        $(".nav-cover").click(function() {
+            $(".nav-cover").toggleClass('expand');
+            $(".header-nav").toggleClass('expand');
+        });
+
+        $(".nav-item.expand .nav-con").on('click', function(e) {
+            if ($(e.target).closest('.icon-go').length) {
+                e.preventDefault();
+                $(this).parent().find(".nav-sub-list").toggleClass("expand");
+            }
+        });
+
+        $(".icon-nav-btn").click(function () {
+            $(".nav-modal").toggle();
+            $("#hd-menu-input").prop("checked", false);
+            console.log("checked");
+        });
+
+        $(".nav-cover").click(function () {
+            $(".nav-modal").hide();
+            console.log("hide");
+        });
+
+        // ✅ header 插入后再初始化 select
+        await initStateSelect();
+    }
+
+    // ================================
     // 加载 footer
-    fetch('./footer.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        });
+    // ================================
+    async function loadFooter() {
+        const res = await fetch('./footer.html');
+        const data = await res.text();
 
+        document.getElementById('footer').innerHTML = data;
+    }
+
+    // ================================
+    // 启动
+    // ================================
+    loadHeader();
+    loadFooter();
 </script>
 
 <script type="module">
