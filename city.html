@@ -382,17 +382,19 @@
   function renderStates(states) {
     const list = document.getElementById('stateList');
 
-    list.innerHTML = states.map(state => {
-      const name = state.state; // ⚠️ 取决于你数据库字段
+    if(list){
+      list.innerHTML = states.map(state => {
+        const name = state.state; // ⚠️ 取决于你数据库字段
 
-      return `
+        return `
             <li class="cityitm">
                 <a href="./city.html?state=${encodeURIComponent(name)}" class="cityitm-link">
                     ${name}
                 </a>
             </li>
         `;
-    }).join('');
+      }).join('');
+    }
   }
 
   function renderCity(citys,state){
